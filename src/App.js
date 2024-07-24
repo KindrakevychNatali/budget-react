@@ -9,6 +9,7 @@ import AddExpenseModal from "./components/AddExpenseModal";
 import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard";
 import TotalBudgetCard from "./components/TotalBudgetCard";
 import ViewExpensesModal from "./components/ViewExpensesModal";
+import Calculator from './components/Calculator';
 
 function App() {
 
@@ -87,6 +88,8 @@ function App() {
   budgetId={viewExpensesModalBudgetId}
   handleClose={() => setViewExpensesModalBudgetId()}
   />
+  <h3>Calculator</h3>
+  <Calculator />
   </>
   );
 }
