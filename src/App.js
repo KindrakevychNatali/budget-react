@@ -51,8 +51,8 @@ function App() {
       </h1>
       <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>Add Budget</Button>
       <Button variant="outline-primary" onClick={openAddExpenseModal}>Add Expense</Button>
-      <Button variant="outline-primary" onClick={toggleCalculator}>Check calculator</Button>
     </Stack>
+    <Button variant="outline-primary" onClick={toggleCalculator}>Check calculator</Button>
     <div style={{
                  display: "grid",
                  gridTemplateColumns: "repeat(auto-fill, minmax(500px, 1fr))",
