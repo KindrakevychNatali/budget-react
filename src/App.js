@@ -17,6 +17,7 @@ function App() {
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId,] = useState();
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
+  const [showCalculator, setShowCalculator] = useState(false);
 
 
   const { budgets, getBudgetExpenses } = useBudgets();
@@ -24,6 +25,10 @@ function App() {
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true);
     setAddExpenseModalBudgetId(budgetId);
+  }
+
+   function toggleCalculator() {
+    setShowCalculator(!showCalculator);
   }
 
   return (
@@ -58,8 +63,8 @@ function App() {
         const amount = getBudgetExpenses(budget.id).reduce((total, expense) => total + expense.amount, 0)
         return(
         <BudgetCard
-         name={budget.name}
-         amount={amount}
+          name={budget.name}
+          amount={amount}
           max={budget.max}
           key={budget.id}
           onAddExpenseClick={() => openAddExpenseModal(budget.id)}
@@ -68,28 +73,31 @@ function App() {
         )
         })}
         <UncategorizedBudgetCard 
-        onAddExpenseClick={openAddExpenseModal}
-        onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}
+           onAddExpenseClick={openAddExpenseModal}
+           onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}
         />
     </div>
     <TotalBudgetCard />
   </Container>
   </div>
-  <AddBudgetModal 
-   show={showAddBudgetModal}
-   handleClose={() => setShowAddBudgetModal(false)}
-  />
-  <AddExpenseModal
-  show={showAddExpenseModal}
-  defaultBudgetId={addExpenseModalBudgetId}
-  handleClose={() => setShowAddExpenseModal(false)}
-  />
-  <ViewExpensesModal
-  budgetId={viewExpensesModalBudgetId}
-  handleClose={() => setViewExpensesModalBudgetId()}
-  />
-  <h3>Calculator</h3>
-  <Calculator />
+    <AddBudgetModal 
+       show={showAddBudgetModal}
+       handleClose={() => setShowAddBudgetModal(false)}
+    />
+    <AddExpenseModal
+       show={showAddExpenseModal}
+       defaultBudgetId={addExpenseModalBudgetId}
+       handleClose={() => setShowAddExpenseModal(false)}
+    />
+    <ViewExpensesModal
+        budgetId={viewExpensesModalBudgetId}
+        handleClose={() => setViewExpensesModalBudgetId()}
+    />
+    {showCalculator && (
+        <div className="calculator-container mt-3">
+          <Calculator />
+        </div>
+    )}
   </>
   );
 }
