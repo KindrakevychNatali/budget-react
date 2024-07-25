@@ -28,7 +28,7 @@ function App() {
   }
 
    function toggleCalculator() {
-    setShowCalculator(!showCalculator);
+    setShowCalculator(prevShowCalculator => !prevShowCalculator);
   }
 
   return (
@@ -96,7 +96,7 @@ function App() {
     />
     {showCalculator && (
         <div className="calculator-container mt-3">
-          <Calculator />
+          <Calculator onClose={toggleCalculator} />
         </div>
     )}
   </>
